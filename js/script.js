@@ -3,7 +3,7 @@ const btn18 = document.getElementById('btn18');
 const btn20 = document.getElementById('btn20');
 const btnNao = document.getElementById('btnNao');
 
-const musica = new Audio('../assets/musica.mpeg');
+const musica = new Audio('./assets/musica.mpeg');
 const fah = new Audio('./assets/fah.mpeg');
 const jumpScare = document.getElementById('jumpScare');
 
