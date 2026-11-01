@@ -7,7 +7,6 @@ const musica = new Audio('../assets/musica.mpeg');
 const fah = new Audio('./assets/fah.mpeg');
 const jumpScare = document.getElementById('jumpScare');
 
-// FUNÇÃO DOS BOTÕES SIM
 function aceitarEncontro(dia) {
     musica.currentTime = 0;
     musica.volume = 1;
