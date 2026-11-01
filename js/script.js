@@ -7,65 +7,56 @@ const musica = new Audio('../assets/musica.mpeg');
 const fah = new Audio('./assets/fah.mpeg');
 const jumpScare = document.getElementById('jumpScare');
 
+// FUNÇÃO DOS BOTÕES SIM
+function aceitarEncontro(dia) {
+    musica.currentTime = 0;
+    musica.volume = 1;
+
+    musica.play().then(() => {
+        alert('TEMOS UM ENCONTRO! ❤️');
+
+        const mensagem = encodeURIComponent(
+            `Oi amor! Quero sair no dia ${dia}. ❤️`
+        );
+        window.location.href = `https://wa.me/5511940775152?text=${mensagem}`;
+    }).catch(error => {
+        console.error('Erro ao tocar música:', error);
+
+        alert('TEMOS UM ENCONTRO! ❤️');
+        const mensagem = encodeURIComponent(
+            `Oi amor! Quero sair no dia ${dia}. ❤️`
+        );
+        window.location.href = `https://wa.me/5511940775152?text=${mensagem}`;
+    });
+}
+
 // BOTÃO 18
 btn18.addEventListener('click', function () {
-
-    musica.currentTime = 0;
-    musica.play();
-
-    alert('TEMOS UM ENCONTRO! ❤️');
-
-    const mensagem = encodeURIComponent(
-        'Oi amor! Quero sair no dia 18. ❤️'
-    );
-
-    window.location.href =
-        `https://wa.me/5511940775152?text=${mensagem}`;
+    aceitarEncontro(18);
 });
 
 // BOTÃO 20
 btn20.addEventListener('click', function () {
-
-    musica.currentTime = 0;
-    musica.play();
-
-    alert('TEMOS UM ENCONTRO! ❤️');
-
-    const mensagem = encodeURIComponent(
-        'Oi amor! Quero sair no dia 20. ❤️'
-    );
-
-    window.location.href =
-        `https://wa.me/5511940775152?text=${mensagem}`;
+    aceitarEncontro(20);
 });
 
-// BOTÃO NÃO
 btnNao.addEventListener('click', function () {
-
-    // ESCONDE O BOTÃO
     btnNao.style.display = 'none';
-
     // TOCA A MÚSICA FAH
     fah.currentTime = 0;
+    fah.volume = 1;
     fah.play();
 
-    // MOSTRA E TOCA O JUMPSCARE
+    // MOSTRA O VÍDEO SEM ÁUDIO
     jumpScare.style.display = 'block';
-    jumpScare.currentTime = 0;
     jumpScare.muted = true;
+    jumpScare.volume = 0;
+    jumpScare.currentTime = 0;
     jumpScare.play();
 
-    // QUANDO O VÍDEO TERMINAR
-    jumpScare.onended = function () {
-
-        // ESCONDE O VÍDEO
+    setTimeout(function () {
+        jumpScare.pause();
+        jumpScare.currentTime = 0;
         jumpScare.style.display = 'none';
-
-        // PARA A MÚSICA
-        fah.pause();
-        fah.currentTime = 0;
-
-        // VOLTA O BOTÃO
-        btnNao.style.display = 'block';
-    };
+    }, 4000);
 });
